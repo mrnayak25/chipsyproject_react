@@ -40,7 +40,7 @@ function App() {
     <h1 style={{textAlign:'center'}}>To-Do-List</h1>
     <AddText store={store} text={text} setText={setText} />
     <div className='row my-4'>
-      <h1>Your Notes</h1>
+      <h1 className='mx-5'>Your Notes</h1>
     {items.map((item, index) => (
    <DisplayText item={item} index={index} handleDelete={handleDelete} handleUpdate={handleUpdate}/>
    ))}
