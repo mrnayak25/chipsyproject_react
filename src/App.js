@@ -1,5 +1,4 @@
-
-
+//App.js
 import { useEffect, useRef, useState } from 'react';
 import './App.css';
 import AddText from './components/AddText';
@@ -7,7 +6,9 @@ import DisplayText from './components/DisplayText';
 
 function App() {
   const [text, setText] = useState('');
+  const [updateText, setUpdateText] = useState('');
   const [items, setItems] = useState([]);
+  const [updateIndex,setUpdateIndex] = useState(null);
   useEffect(() => {
     const storedItems = localStorage.getItem("items");
     if (storedItems) {
@@ -28,13 +29,27 @@ function App() {
     console.log(newItems);
     localStorage.setItem('items', JSON.stringify(newItems));
   }
-  const handleUpdate =(index)=>{
+  const openModel =(index)=>{
+    setUpdateText(items[index])
+    setUpdateIndex(index)
     ref.current.click();
-
+  }
+  const handelUpdate=(text)=>{
+    const newItems =[...items];
+    newItems[updateIndex]=text;
+    console.log(newItems);
+    localStorage.setItem('items', JSON.stringify(newItems));
+    setUpdateText('')
+    const modal = document.getElementById('modalId');
+    modal.classList.remove('show');
+    modal.style.display = 'none';
+    document.body.classList.remove('modal-open');
+    const backdrop = document.getElementsByClassName('modal-backdrop')[0];
+    backdrop.parentNode.removeChild(backdrop);
   }
   const onChange =(e)=>{
-    setText(e.target.value)
-  }
+    setUpdateText(e.target.value);
+  } 
   return (
     <>
     <h1 style={{textAlign:'center'}}>To-Do-List</h1>
@@ -42,7 +57,7 @@ function App() {
     <div className='row my-4'>
       <h1 className='mx-5'>Your Notes</h1>
     {items.map((item, index) => (
-   <DisplayText item={item} index={index} handleDelete={handleDelete} handleUpdate={handleUpdate}/>
+   <DisplayText item={item} index={index} handleDelete={handleDelete} openModel={openModel}/>
    ))}
    
    <button ref ={ref} type="button" className="btn btn-primary btn-lg d-none" data-bs-toggle="modal" data-bs-target="#modalId"> Launch </button>
@@ -55,10 +70,10 @@ function App() {
       <button  type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" ></button>
     </div>
       <label htmlFor="desc" className="form-label mx-3">Your Note</label>
-      <input type="text" className="form-control mx-3"id="desc" name='desc' onChange={onChange} value={text}/>
+      <input type="text" className="form-control mx-3"id="desc" name='desc' onChange={onChange} value={updateText}/>
     <div className="modal-footer">
       <button type="button" className="btn btn-secondary" data-bs-dismiss="modal"> Close </button>
-      <button type="button" className="btn btn-primary">Upadte Note</button>
+      <button type="button" className="btn btn-primary" onClick={()=>{handelUpdate(updateText)}}>Upadte Note</button>
     </div>
   </div>
 </div>

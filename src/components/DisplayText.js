@@ -11,7 +11,7 @@ function DisplayText(props) {
     <div className="simpleCard" key={props.index}>
       <p>{props.item}</p>
       <div className="buttons">
-        <button type="button" className="btn btn-light"onClick={()=>{props.handleUpdate(props.index)}}>
+        <button type="button" className="btn btn-light"onClick={()=>{props.openModel(props.index)}}>
           Edit
         </button>
         <button type="button" className="btn btn-danger mx-2" onClick={delete_item}>
