@@ -9,15 +9,14 @@ function DisplayText(props) {
   };
 
   return (
-    <div className="simpleCard" key={props.index}>
-      {/* Render the text of the item */}
-      <p>{props.item.text}</p>
-      {/* Render the timestamp in a readable format */}
-      <small className="text-muted">
-        Added on: {new Date(props.item.timestamp).toLocaleString()}
-      </small>
+    <div className="simpleCard mx-5" key={props.index}>
+      <div>
+      <p>{props.item.text}</p> 
+      <p className="text-muted">
+        {new Date(props.item.timestamp).toLocaleString()}
+      </p>
+      </div>
       <div className="buttons">
-        {/* Edit button */}
         <button
           type="button"
           className="btn btn-light"
@@ -27,7 +26,6 @@ function DisplayText(props) {
         >
           Edit
         </button>
-        {/* Delete button */}
         <button
           type="button"
           className="btn btn-danger mx-2"

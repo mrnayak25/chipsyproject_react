@@ -37,10 +37,10 @@
   }
 }
 .buttons{
-  margin-left: 125px;
+  margin-left: 25px;
 }
 .simpleCard{
-  margin: 10px 20px;
+  margin: 10px 10px;
   display: flex;
   border: 2px solid black;
   padding: 15px;

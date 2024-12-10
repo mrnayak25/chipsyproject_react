@@ -11,8 +11,8 @@ function AddText(props) {
 
   return (
     <div className="mx-5 my-5">
-      <h1>Add Notes</h1>
-      <input
+      <h1 className="font-bold text-3xl">Add Notes</h1>
+      <textarea
         id="textbox"
         className="form-control my-3"
         value={props.text}

@@ -11,7 +11,7 @@ function App() {
   const [updateIndex, setUpdateIndex] = useState(null);
   const [sortOption, setSortOption] = useState('');
   const [filterText, setFilterText] = useState('');
-
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const ref = useRef(null);
 
   useEffect(() => {
@@ -91,28 +91,54 @@ function App() {
 
   return (
     <>
-      <h1 style={{ textAlign: 'center' }}>To-Do List</h1>
+      <h1 className='text-center text-5xl font-extrabold mt-2'>To-Do List</h1>
       <AddText store={store} text={text} setText={setText} />
-      
-      <div className="row my-4">
-        <div className='d-flex justify-between'>
-        <h1 className="mx-5">Your Notes</h1>
-        <div className="controls d-flex my-4">
-        <input
-          type="text"
-          placeholder="Filter notes"
-          value={filterText}
-          onChange={(e) => setFilterText(e.target.value)}
-          className="form-control mb-3"
-        />
-        <button onClick={() => handleSort('alphabetical')} className="btn btn-info me-2">
-          Sort Alphabetically
-        </button>
-        <button onClick={() => handleSort('time')} className="btn btn-info">
-          Sort by Time
-        </button>
+      <div className="my-2 align-middle">
+        <div className=' mx-5 flex justify-between'>
+        <h1 className="text-3xl font-bold">Your Notes</h1>
+        <div className="flex items-center relative">
+          <input
+            type="text"
+            placeholder="Search"
+            value={filterText}
+            onChange={(e) => setFilterText(e.target.value)}
+            className="form-control mr-2 "
+          />
+          <div className="relative">
+            <button
+              onClick={() => setIsMenuOpen((prev) => !prev)}
+              className="my-auto p-2 me-5 rounded-lg hover:bg-gray-200"
+            >
+              <i class="fa-solid fa-filter "></i>
+            </button>
+            {isMenuOpen && (
+              <div
+                className="absolute right-0 mt-2 w-52 ring-1 ring-black  bg-white shadow-2xl rounded-md z-10"
+              >
+                <div className='flex justify-between mx-3 mt-2 align-middle'>
+                  <p className='font-bold text-xl '>Filter</p>
+                  <i class="fa-solid fa-x text-lg text-red-700"></i>
+                </div>
+                <div className='space-y-2 my-2'>
+                <button
+                  onClick={() => handleSort("alphabetical")}
+                  className="w-full text-left px-4 py-2  hover:bg-gray-100"
+                ><div className='flex justify-between align-middle'>
+                  <p className='text-xl'>Sort Alphabetically</p> <i class="fa-solid fa-arrow-down"></i></div>
+                </button>
+                <button
+                  onClick={() => handleSort("time")}
+                  className="w-full text-left px-4 py-2  hover:bg-gray-100"
+                ><div className='flex justify-between  align-middle'>
+                  <p className='text-xl'>Sort by Time</p> <i class="fa-solid fa-arrow-down"></i></div>
+                </button>
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
       </div>
-      </div>
+      <div className='row'>
         {filteredItems.map((item, index) => (
           <DisplayText
             key={index}
@@ -122,8 +148,8 @@ function App() {
             openModel={openModel}
           />
         ))}
-
-        <button
+</div>
+        {/* <button
           ref={ref}
           type="button"
           className="btn btn-primary btn-lg d-none"
@@ -131,7 +157,7 @@ function App() {
           data-bs-target="#modalId"
         >
           Launch
-        </button>
+        </button> */}
 
         <div
           className="modal fade"
