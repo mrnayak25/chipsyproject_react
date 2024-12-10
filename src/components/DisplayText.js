@@ -9,7 +9,7 @@ function DisplayText(props) {
   };
 
   return (
-    <div className="simpleCard mx-5" key={props.index}>
+    <div className="simpleCard " key={props.index}>
       <div>
       <p>{props.item.text}</p> 
       <p className="text-muted">

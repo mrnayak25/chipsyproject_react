@@ -40,10 +40,26 @@
   margin-left: 25px;
 }
 .simpleCard{
-  margin: 10px 10px;
+  margin: 10px 20px;
   display: flex;
   border: 2px solid black;
   padding: 15px;
   width: fit-content;
   border-radius: 10px;
 }
+@keyframes moveImage {
+  0% {
+    transform: translateX(-150%);
+  }
+  50% {
+    transform: translateX(150%);
+  }
+  100% {
+    transform: translateX(-150%);
+  }
+}
+
+.animate-left-right {
+  animation: moveImage 8s ease-in-out infinite;
+}
+
