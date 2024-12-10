@@ -161,8 +161,8 @@ function App() {
       <DisplayText key={index} item={item} index={index} handleDelete={handleDelete} openModel={openModel} />
     ))
   ) : (<div className=" justify-items-center">
-    <img src={notFound} className="w-1/4  text-center animate-left-right" alt="not found"/>
-    <div>No Items</div></div>
+    <img src={notFound} className="h-2/3  text-center animate-left-right" alt="not found"/>
+    <div className="text-2xl font-black">No Items To Display</div></div>
   )}
       </div>
     </div>

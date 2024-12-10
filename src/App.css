@@ -50,12 +50,20 @@
 @keyframes moveImage {
   0% {
     transform: translateX(-150%);
+    
+  }
+  25% {
+    transform: scale(-1);
   }
   50% {
     transform: translateX(150%);
   }
+  75%{
+    transform: scale(2);
+  }
   100% {
     transform: translateX(-150%);
+    
   }
 }
 
